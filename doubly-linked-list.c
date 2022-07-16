@@ -191,6 +191,7 @@ void insert_after(dll** head)
         q->next = temp;
         return;
     }
+    free(temp); // no match for position. free node else memory leak will happen.
 }
 
 void add_at_beg(dll** head)
