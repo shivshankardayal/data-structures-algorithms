@@ -1,11 +1,12 @@
 #include "dll.h"
 
-void delete(dll** head)
+void delete (dll **head)
 {
-    dll* q = *head, *temp;
+    dll *q = *head, *temp;
     int value = 0;
 
-    if(q == NULL) {
+    if (q == NULL)
+    {
         printf("There is no node to be deleted.\n");
         return;
     }
@@ -13,15 +14,18 @@ void delete(dll** head)
     printf("Enter the value to be deleted: ");
     scanf("%d", &value);
 
-    if(q->data == value) { // case of deleting first node. head changes.
+    if (q->data == value)
+    { // case of deleting first node. head changes.
         *head = (*head)->next;
         (*head)->prev = NULL;
         free(q);
         return;
     }
 
-    while(q->next != NULL) {
-        if(q->data == value) {
+    while (q->next != NULL)
+    {
+        if (q->data == value)
+        {
             q->prev->next = q->next;
             q->next->prev = q->prev;
             free(q);
@@ -31,26 +35,28 @@ void delete(dll** head)
         q = q->next;
     }
 
-    if(q->data == value) { // Last node is to be deleted
+    if (q->data == value)
+    { // Last node is to be deleted
         temp->next = NULL;
         free(q);
         return;
     }
 
     printf("The element to be deleted was not found.\n");
-
 }
 
-int count(dll* head)
+int count(dll *head)
 {
     int count = 1;
 
-    if(head == NULL) {
+    if (head == NULL)
+    {
         printf("The no. of elements in linked list is %d.\n", 0);
         return 0;
     }
 
-    while(head->next != NULL) {
+    while (head->next != NULL)
+    {
         count++;
         head = head->next;
     }
@@ -71,33 +77,34 @@ void menu()
     puts("8. Print the list.");
 }
 
-void append(dll** head)
+void append(dll **head)
 {
-    dll* temp = *head;
+    dll *temp = *head;
     int value = 0;
-    dll* node = (dll*)malloc(sizeof(dll));
+    dll *node = (dll *)malloc(sizeof(dll));
 
     printf("Enter a value for new node: ");
     scanf("%d", &value);
     node->data = value;
     node->next = NULL; // because this is last node
 
-    if(!(*head)) { // if *head is NULL
+    if (!(*head))
+    { // if *head is NULL
         node->prev = NULL;
         (*head) = node;
         return;
     }
 
-    while(temp->next != NULL)
+    while (temp->next != NULL)
         temp = temp->next;
 
     temp->next = node;
     node->prev = temp;
 }
 
-void insert_before(dll** head)
+void insert_before(dll **head)
 {
-    dll* q = *head;
+    dll *q = *head;
     int position = -1;
     int index = 0;
     int value = 0;
@@ -105,19 +112,23 @@ void insert_before(dll** head)
     printf("Enter the position at which node is to be inserted: ");
     scanf("%d", &position);
 
-    if(position == 0) {
+    if (position == 0)
+    {
         add_at_beg(head);
+        return;
     }
 
     printf("Enter the value to be inserted: ");
     scanf("%d", &value);
 
-    dll* temp = (dll*)malloc(sizeof(dll));
+    dll *temp = (dll *)malloc(sizeof(dll));
     temp->data = value;
 
-    while(q->next != NULL) {
+    while (q->next != NULL)
+    {
         ++index;
-        if(index == position){
+        if (index == position)
+        {
             temp->next = q->next;
             temp->prev = q;
             q->next->prev = temp;
@@ -127,7 +138,8 @@ void insert_before(dll** head)
         q = q->next;
     }
     ++index;
-    if(index == position) { // q->next is NULL and j has matched position like append operation.
+    if (index == position)
+    { // q->next is NULL and j has matched position like append operation.
         temp->next = NULL;
         q->next = temp;
         temp->prev = q;
@@ -136,14 +148,15 @@ void insert_before(dll** head)
     free(temp); // no match for position. free node else memory leak will happen.
 }
 
-void insert_after(dll** head)
+void insert_after(dll **head)
 {
-    dll* q = *head;
+    dll *q = *head;
     int position = -1;
     int index = 0;
     int value = 0;
 
-    if(*head == NULL) {
+    if (*head == NULL)
+    {
         printf("We do not have any node to be inserted after.\n");
         return;
     }
@@ -154,11 +167,13 @@ void insert_after(dll** head)
     printf("Enter the value to be inserted: ");
     scanf("%d", &value);
 
-    dll* temp = (dll*)malloc(sizeof(dll));
+    dll *temp = (dll *)malloc(sizeof(dll));
     temp->data = value;
 
-    while(q->next != NULL) {
-        if(index == position){
+    while (q->next != NULL)
+    {
+        if (index == position)
+        {
             temp->next = q->next;
             temp->prev = q;
             q->next->prev = temp;
@@ -169,7 +184,8 @@ void insert_after(dll** head)
         ++index;
     }
 
-    if(q->next == NULL && index == position) { // equivalent to append
+    if (q->next == NULL && index == position)
+    { // equivalent to append
         temp->next = q->next;
         temp->prev = q;
         q->next = temp;
@@ -178,9 +194,9 @@ void insert_after(dll** head)
     free(temp); // no match for position. free node else memory leak will happen.
 }
 
-void add_at_beg(dll** head)
+void add_at_beg(dll **head)
 {
-    dll* temp = (dll*)malloc(sizeof(dll));
+    dll *temp = (dll *)malloc(sizeof(dll));
     int value = 0;
 
     printf("Enter a value for new node: ");
@@ -190,16 +206,17 @@ void add_at_beg(dll** head)
     temp->prev = NULL;
     temp->next = (*head);
 
-    if(*head)
+    if (*head)
         (*head)->prev = temp;
 
     (*head) = temp;
 }
 
-void print(dll* head)
+void print(dll *head)
 {
     printf("Head ");
-    while(head != NULL) {
+    while (head != NULL)
+    {
         printf("%d ", head->data);
         head = head->next;
     }
@@ -207,16 +224,18 @@ void print(dll* head)
     printf("NULL\n");
 }
 
-void search(dll* head)
+void search(dll *head)
 {
-    int i=0, position=1;
+    int i = 0, position = 0;
 
     printf("Enter the number to be searched.");
     scanf("%d", &i);
 
-    while(head != NULL) {
-        if(head->data == i) {
-            printf("%d is found at %dth position.\n", i, position - 1);
+    while (head != NULL)
+    {
+        if (head->data == i)
+        {
+            printf("%d is found at %dth position.\n", i, position);
             return;
         }
 
@@ -224,53 +243,4 @@ void search(dll* head)
         position++;
     }
     printf("%d was not found in linked list.\n", i);
-}
-
-int main()
-{
-    dll* head = NULL;
-    int option = 0;
-
-    menu();
-    printf("Enter 1 to 8 to choose an action. Any other value to quit.\n");
-    scanf("%d", &option);
-    getchar(); // to remove \n
-
-    while(option  >= 1 && option <= 8) {
-        switch(option) {
-            case 1:
-                add_at_beg(&head);
-                break;
-            case 2:
-                insert_after(&head);
-                break;
-            case 3:
-                insert_before(&head);
-                break;
-            case 4:
-                append(&head);
-                break;
-            case 5:
-                count(head);
-                break;
-            case 6:
-                delete(&head);
-                break;
-            case 7:
-                search(head);
-                break;
-            case 8:
-                print(head);
-                break;
-            default:
-                break;
-        }
-        menu();
-        printf("Enter 1 to 8 to choose an action. Any other number to quit.\n");
-        fflush(stdin);
-        scanf("%d", &option);
-        getchar(); // to remove \n
-    }
-
-    return 0;
 }
