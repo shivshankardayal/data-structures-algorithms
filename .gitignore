@@ -1,3 +1,10 @@
 *.webm
 *.mkv
 a.out
+*.log
+*.vrb
+*.snm
+*.aux
+*.nav
+*.out
+*.toc

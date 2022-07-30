@@ -1,0 +1,244 @@
+\documentclass[aspectratio=169,8pt]{beamer}
+
+% Standard packages
+
+\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[]{unicode-math}
+\setmathfont{Inconsolata}
+\setsansfont{Roboto}
+
+
+% Setup TikZ
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+
+\newcounter{counter}
+% Author, Title, etc.
+
+\title{Complex Numbers}
+
+\author[Shiv Shankar Dayal]{Shiv Shankar Dayal}
+
+\begin{document}
+\begin{frame}
+       \titlepage
+\end{frame}
+\begin{frame}{Theory}
+  A complex number comprises of two numbers: a real number and an imaginary number. An imaginary number is square root of a
+  negative number, for example, $\sqrt{-1}, \sqrt{-2}, \sqrt{-3}.$ These are called imaginary numbers because they do not exist in
+  real life in the sense that like ordinary numbers they cannot be used for counting.\\
+  \vspace*{0.2cm}
+  A real number like $1$ can also be represented as a complex number having a $0$ imaginary part. The value $\sqrt{-1}$ is denoted
+  by the Greek letter $\iota,$ which stands for \textit{iota.} Typically, we use either $i$ or $j$ to denote this.\\
+  \vspace*{0.2cm}
+  Clearly we have following:
+  $$i^2 = -1, i^3 = -i, i^4 = 1, i^5 = i, i^6 = -1, i^7 = -i, i^8 = 1, \ldots$$
+  If you examine carefully you will find that following holds true
+  $$i^{4m} = 1, i^{4m + 1} = i, i^{4m + 2} = -1\text{~and~}i^{4m + 3}= -i~\forall~m\in P$$
+  $P$ is the set of positive integers including zero.
+
+  \textbf{Note:} $1 = \sqrt{1} = \sqrt{-1*-1} = i * i = -1$
+
+  However, the above result is wrong because for any two real numbers $a$ and $b$ the result $\sqrt{a}*\sqrt{b} = \sqrt{ab}$ holds
+  good if and only if the two numbers are zero or positive. Thus $1 = \sqrt{-1*-1}$ is wrong because power of $-$ is $-1$ which
+  makes the set of equalities go wrong.
+\end{frame}
+\begin{frame}{Definitions}
+  A complex number is commonly written as $a + ib$ or $x + iy.$ Here $a, b, x$ and $y$ are all real numbers. The complex number
+  itself is denoted by $z,$ like $z = x + iy.$ Here $x$ is called the \textit{real} part and is also denote by $Re(z)$ and $y$ is
+  called the imaginary part and is also denoted by $Im(z).$\\
+  \vspace*{0.2cm}
+  A complex number is purely real if its imaginary part or $y$ or $Im(z)$ is zero. Similarly, a complex number is purely imaginary
+  if its real part or $x$ or $Re(z)$ is zero. Clearly, as you can fathom that there can exist only one number which has both the
+  parts as zero and certainly that is $0.$ That is, $0=0+i0.$\\
+  \vspace*{0.2cm}
+  The set of all complex number is typically denoted by $C$. Two complex numbers $z_1$ and $z_2$ are said to be true if there real
+  parts are equal and imaginary parts are equal. That is if $z_1 = x_1 + iy_1$ and $z_2 = x_2 + iy_2$ then for $z_11$ to be equal
+  to $z_2,$ $x_1$ must be equal to $x_2$ and $y_1$ must be equal to $y_2.$
+\end{frame}
+\begin{frame}{Simple Operations}
+  \begin{enumerate}
+  \item \textbf{Addition:} $(a + ib) + (c + id) = (a + c) + i(b + d)$
+  \item \textbf{Subtraction:} $(a + ib) - (c + id) = (a - c) + i(b - d)$
+  \item \textbf{Multiplication:} $(a + ib) * (c + id) = ac + ibc + iad + bdi^2 = (ac - bd) + i(bc + ad)$
+    \item \textbf{Division:} $\frac{a + ib}{c + id} = \frac{a + ib}{c + id}.\frac{c - id}{c - id} = \frac{ac + bd + i(bc + ad)}{c^2
+    + d^2}$
+  \end{enumerate}
+  \vspace*{.2cm}
+  \textbf{\large{Conjugate of a Complex Number}}\\
+  \vspace*{.2cm}
+  Let $z = x + iy$ be a complex number then its complex conjugate is a number with imaginary part made negative and it is written
+  as $\overline{z} = x - iy.$ $\overline{z}$ is the typical representation for a conjugate of a complex number $z$.\\
+  \vspace*{0.2cm}
+  \textbf{Properties of Conjugates}\\
+  \vspace*{0.2cm}
+  \begin{enumerate}
+  \item $z_1 = z_2 \Leftrightarrow \overline{z_1} = \overline{z_2}$\\
+    Clearly as we know for two complex numbers to be equal both parts must be equal so this is very easy to understand that if $x_1
+    = x_2$ and $y_1 = y_2$ then this bidirectional condition is always satisfied.
+  \item $\overline(\overline{z}) = z.$\\
+    $z = x + iy,$ hence, $\overline{z} = x - iy,$ hence $\overline(\overline{z}) = x - (-iy) = x + iy = z$
+  \item $z + \overline{z} = 2Re(x)$\\
+    Clearly, $z + \overline{z} = x + iy + x - iy = 2x = 2Re(x)$
+  \item $z - \overline{z} = 2iIm(x)$\\
+    Clearly, $z - \overline{z} = x + iy - (x - iy) = 2iy = 2iIm(x)$
+    \setcounter{counter}{\value{enumi}}
+  \end{enumerate}
+\end{frame}
+\begin{frame}{Conjugate contd.}
+  \begin{enumerate}
+    \setcounter{enumi}{\value{counter}}
+  \item $z + \overline{z} = 0 \Leftrightarrow z$ is purely imaginary.\\
+    $z + \overline{z} = x + iy + x - iy = 2x = 0$ which means rela part is zero and hence $z$ is purely imaginary.
+  \item $z = \overline{z} \Leftrightarrow z$ is purely real.\\
+    $x + iy = x -iy \Rightarrow 2iy = 0$ and thus $z$ is purely real.
+  \item $z\overline{z} = [x^2 + y^2]$\\
+    Clearly, $z\overline{z} = (x + iy)(x - iy) = x^2 + y^2$
+  \item $\overline{z_1 + z_2} = \overline{z_1} + \overline{z_1}\overline{z_1 + z_2} = \overline{(x_1 + iy_1) + (x_2 + iy_2)} = \overline{(x_1 + x_2) + i(y_1 + y_2)}$\\
+    $= (x_1 + x_2) -i(y_1 + y_2) = x_1 - iy_1 + x_2 - iy_2 = \overline{z_1} + \overline{z_2}$
+  \item $\overline{z_1 - z_2} = \overline{z_1} - \overline{z_2}$\\
+    It can be proven like item 8.
+  \item $\overline{z_1z_2} = \overline{z_1} - \overline{z_2}$\\
+    It can be proven like item 8.
+  \item $\overline{\left(\frac{z_1}{z_2}\right)} = \frac{\overline{z_1}}{\overline{z_2}}$ if $z_2\neq 0$
+    You can rationalize the base by multiplying it from its conjugate and apply division formula given above to prove it.
+  \item If $P(z) = a_0 + a_1z + a_2z^2 + \ldots + a_nz^n.$ where $s_0, a_1, \ldots, a_n$ and $z$ are complex numbers, then\\
+    $\overline{P(z)} = \overline{a_0} + \overline{a_1}\overline{z} + \overline{a_2}(\overline{z})^2 + \ldots + \overline{a_n}(\overline{z)^n} = \overline{P}(\overline{z})$ where\\
+    $\overline{P}(z) = \overline{a_0} + \overline{a_1}z + \overline{a_2}z^2 + \ldots + \overline{a_n}z^n$
+    \setcounter{counter}{\value{enumi}}
+  \end{enumerate}
+\end{frame}
+\begin{frame}{Conjugate contd.}
+  \begin{enumerate}
+    \setcounter{enumi}{\value{counter}}
+  \item If $R(z) = \frac{P(z)}{Q(z)}$ where $P(z)$ and $Q(z)$ are polynomilas in $z,$ and $Q(z)\neq 0,$ then\\
+    $\overline{R(z)} = \frac{\overline{P}(\overline{z})}{\overline{Q}(\overline{z})}$
+  \item If $z = \begin{vmatrix}a_1 & a_2 & a_3\\b_1 & b_2 & b_3\\c_1 & c_2 & c_3\end{vmatrix}$, then $\overline{z} = \begin{vmatrix}\overline{a_1} & \overline{a_2} & \overline{a_3}\\\overline{b_1} & \overline{b_2} & \overline{b_3}\\\overline{c_1} & \overline{c_2} & \overline{c_3}\end{vmatrix}$ where $a_i, b_i, c_i(i = 1,2,3)$ are complex numbers.
+  \end{enumerate}
+  \vspace*{0.2cm}
+  \textbf{\large{Modulus of a Complex Number}}\\
+  \vspace*{0.2cm}
+  Modulus of a complex numbe $z$ is denoted by $|z|$ and is equalt to the real number $\sqrt{x^2 + y^2}$. Note that $|z|\geq 0~\forall~z\in C$\\
+  \vspace*{0.2cm}
+  \textbf{Properties of Modulus}\\
+  \vspace*{0.2cm}
+  \begin{enumerate}
+  \item $|z| = 0 \Leftrightarrow z = 0.$\\
+    $x^2 + y^2 = 0 \Leftrightarrow x = 0, y = 0 \Rightarrow z = 0$
+  \item $|z| = |\overline{z}| = |-z| = |-\overline{z}| = x^2 + y^2$
+  \item $-|z|\leq Re(x)\leq |z|$ Clearly, $-(x^2 + y^2) \leq x^2 \leq (x^2 + y^2)$
+  \item $-|z|\leq Im(x)\leq |z|$ Clearly, $-(x^2 + y^2) \leq y^2 \leq (x^2 + y^2)$
+  \item $z\overline{z} = |z|^2$ Clearly, $(x + iy)(x - iy) = (x^2 + y^2) = |z|^2$
+  \item $|z_1z_2| = |z_1||z_2|$ Clearly, $|z_1z_2| = |x_1x_2 - y_1y_2 + i(x_1y_2 + x_2y_1))|$\\
+    $= \sqrt{(x_1x_2 - y_1y_2)^2 + (x_1y_2 + x_2y_1)^2} = \sqrt{(x_1^2 + y_1^2)(x_2^2 + y_2^2)} = |z_1||z_2|$
+    \setcounter{enumi}{\value{counter}}
+  \end{enumerate}
+\end{frame}
+\begin{frame}{Modulus contd.}
+  \begin{enumerate}
+    \setcounter{enumi}{\value{counter}}
+  \item $\left|\frac{z_1}{z_2}\right| = \frac{|z_1|}{z_2},$ if $z_2\neq 0$
+  \item $|z_1 + z_2|^2 = |z_1|^2 + |z_2|^2 + \overline{z_1}z_2 + z_1\overline{z_2} = |z_1|^2 + |z_2|^2 + 2Re(z_1\overline{z_2})$
+  \item $|z_1 - z_2|^2 = |z_1|^2 + |z_2|^2 - \overline{z_1}z_2 - z_1\overline{z_2} = |z_1|^2 + |z_2|^2 - 2Re(z_1\overline{z_2})$
+  \item $|z_1 + z_2|^2 + |z_1 - z_2|^2 = 2(|z_1|^2 + |z_2|^2)$
+  \item If $a$ amd $b$ are real numbers and $z_1$ and $z_2$ are complex numbers, then\\
+    $|az_1 + bz_2|^2 + |bz_1 - az_2|^2 = (a^2 + b^2)(|z_1|^2 + |z_2|^2)$
+  \item If $z_1, z_2\neq 0,$ then $|z_1 + z_2|^2 = |z_1|^2 + |z_2|^2 \Leftrightarrow \frac{z_1}{z_2}$ is purely imaginary.
+  \item If $z_1$ and $z_2$ are complex numbers then $|z_1 + z_2|\leq |z_2| + |z_2|.$ This expression can be generalized to $n$ terms as well.
+  \item Simialrly, these can be proven that $|z_1 - z_2|\leq |z_1| + |z_2|, |z_1| - |z_2|\leq |z_1| + |z_2|$ and $|z_1 - z_2|\geq ||z_1| - |z_2||$
+  \end{enumerate}
+\end{frame}
+\begin{frame}{Theory contd}
+  A complex number $z$ which we have considered to be equal to $x + iy$ can be
+  represented by a point $P$ whose caretesian coordinates are $(x, y)$ referred
+  to rectangular axes $Ox$ and $Oy$ where $O$ is origin i.e. $(0, 0)$ and are
+  called \textit{real} and \textit{imaginary} axis respectively. The $xy$ two
+  dimensional plane is also called \textit{Argand plane, complex plane or
+    Gaussian plane}. The point $P$ is also called the \textit{image} of the
+  complex number and $z$ is also called the \textit{affix} or \textit{complex
+    coordinate} of point $P.$
+
+  The modulus is given by the length of segment $OP$ which is equal to $OP =
+  \sqrt{x^2 + y^2} = |z|.$ Thus, $|z|$ is the length of $OP$.
+\end{frame}
+\begin{frame}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[->] (-.5,0) -- (3,0);
+      \draw[->] (0,-.5) -- (0,3);
+      \draw (0, 3.5) node {$Y$};
+      \draw (3.5, 0) node {$X$};
+      \draw (2.5,0) -- (2.5,2.5);
+      \draw (0,0) -- (2.5, 2.5);
+      \draw (.5,0) arc(0:45:.5);
+      \draw (.7,.3) node{$\theta$};
+      \draw (1.5, 0.2) node {$x$};
+      \draw (2.7, 1.5) node {$y$};
+      \draw (3.4, 1.1) node {$OP=|z|$};
+      \draw (3.5, 0.7) node {$arg(z)=\theta$};
+      \draw (2.5, 2.7) node{$P=x+iy$};
+      \node [label = below left:{$O$}] (o) at (0, 0) {};
+      \draw (o);
+    \end{tikzpicture}
+  \end{center}
+  In the diagram $\theta$ is known as the argument of $z.$ it is the angle made
+  with positive direction(i.e. counter-clockwise) of real axis. This arhument
+  is not unique. If $\theta$ is an argument of a complex number $z$ then $2n\pi
+  + \theta$ where $n\in I$ where $I$ is the set of integers will be arguments
+  as well. The value of argument for which $-\pi<\theta\leq \pi$ is called the
+  \textit{principal argument.}
+\end{frame}
+\begin{frame}{Different Arguments of a Complex Number}
+  In the digram given in previous slide the argument is given as
+  $$arg(z) = \tan^{-1}\left(\frac{y}{x}\right)$$
+  this value is for when $z$ is in first quadrant. When $z$ will lie in second,
+  third and fourth quadrants then arguments will be
+  $$arg(z) = \pi - \tan^{-1}\left(\frac{y}{|x|}\right), arg(z) = -\pi +
+  \tan^{-1}\left(\frac{|y|}{|x|}\right), arg(z) =
+  -\tan^{-1}\left(\frac{|y|}{x}\right)$$
+  \vspace*{0.2cm}
+  \textbf{\large{Polar Form of a Complex Number}}\\
+  \vspace*{0.2cm}
+  If $z$ is a non-zero complex number, then we can write $z = r(\cos\theta +
+  i\sin\theta)$ where $r = |z|$ and $\theta = arg(z)$\\
+  \vspace*{0.2cm}
+  In this case $z$ is also given by $z = r[\cos(2n\pi + \theta) + i\sin(2n\pi +
+    \theta)]$ where $n\in I.$\\
+  \vspace*{0.2cm}
+  \textbf{\large{Euler's Formula}}\\
+  The complex number $\cos\theta + i\sin\theta$ is denoted by $e^{i\theta}$.
+\end{frame}
+\begin{frame}{Properties of Arguments}
+  If $z, z_1$ and $z_2$ are complex numbers then
+  \begin{enumerate}
+    \item $arg(\overline{z}) = -arg(z)$. This can be easily proven as $z = x +
+      iy$ and $\overline{z} = x - iy$ so sign of argument will get a -ve sign
+      as $y$ gets one.
+    \item $arg(z_1z_2) = arg(z_1) + arg(z_2) + 2k\pi$ where
+      $$k = \begin{cases}0 & -\pi <arg(z_1) + arg(z_2) \leq \pi\\
+      1 & -2\pi < arg(z_1) + arg(z_2)\leq -\pi\\
+      -1 & -\pi < arg(z_1) + arg(z_2)\leq 2\pi\end{cases}$$
+    \item $arg(z_1\overline{z_2}) = arg(z_1) - arg(z_2)$
+    \item $\arg\left(\frac{z_1}{z_2}\right) = arg(z_1) + arg(z_2) + 2k\pi$
+      where $k$ is same as item 2 with $+$ sign between $z_1$ and $z_2$ are
+      replaced with $-$ sign.
+    \item $|z_1 + z_2| = |z_1 - z_2|\Leftrightarrow arg(z_1) - arg(z_2) =
+      \pi/2$
+    \item $|z_1 + z_2| = |z_1| + |z_2|\Leftrightarrow arg(z_1) = arg(z_2)$
+    \item $|z_1 + z_2|^2 = r_1^2 + r_2^2 + 2r_1r_2\cos(\theta_1 - \theta_2)$
+    \item $|z_1 - z_2|^2 = r_1^2 + r_2^2 + 2r_1r_2\cos(\theta_1 + \theta_2)$
+  \end{enumerate}
+\end{frame}
+\begin{frame}{Vector Representation}
+  Complex numbers can also be represented as vectors. Length of the vector is
+  nothing but modulus of complex number and argument is the angle which the
+  vector makes with the real axis. It is denoted as $\overrightarrow{OP}$ where
+  $OP$ represents the vector of the complex number $z.$
+\end{frame}
+\end{document}

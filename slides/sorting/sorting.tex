@@ -1,0 +1,52 @@
+\documentclass[aspectratio=169,8pt]{beamer}
+
+% Standard packages
+
+\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[]{unicode-math}
+\setmathfont{Inconsolata}
+\setsansfont{Roboto}
+
+
+% Setup TikZ
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+
+\newcounter{counter}
+% Author, Title, etc.
+
+\title{Sorting}
+
+\author[Shiv Shankar Dayal]{Shiv Shankar Dayal}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}{Sorting}
+  Sorting is the process of arranging a list of values in increasing/decreasing order.\\
+  \vspace*{0.2cm}
+  Some algorithms(for example, insertion sort or selection sort) do not require extra space/memory to sort the list of values while
+  some algorithms(merge sort and its variants) require extra space for sorting the list. Alogrithms which do not require extra
+  space are called \textit{in-place} sorting algorithm.\\
+  \vspace*{0.2cm}
+  Internal/External Sorting: When all the data is stored in memory the sorting is known as internal sorting. When data does not fit
+  in memory and needs to use secondary storage or disk then it is called external sorting. Note that in modern times we have so
+  much memory that we typically never sort externally making this kind of algorithms obsolete and are of academic interest only.\\
+  \vspace*{0.2cm}
+  Stability of Sorting Algorithms: A sorting algorithm in which values with equal keys appear in the same order in sorted output as
+  they appear in the input array to be sorted is called stable sorting algorithm. For example, if we have tuples of students with
+  marks and names then if we sort by name or marks then we might lose the original order after sorting. Note that stability won't
+  be a concern if all marks and names are different i.e. all keys are different. Unstable sorts can be made stable by modifying the
+  key comparison operation.\\
+  \vspace*{0.2cm}
+  Mechanism of Sorting: There are three ways sorting algorithms work. By exchange, by insetion and by selection. We will see what
+  these mean when we study them. There are other tecniques also like enumeration and special-purpose sorting as well.
+\end{frame}
+\end{document}
