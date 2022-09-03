@@ -1,16 +1,30 @@
 #include "insertionsort.h"
+#include <stdio.h>
 #include <stddef.h>
 
 void insertionsort(int *a, size_t n)
 {
-    int i, k, y;
+    int i, j, y;
 
-    for (k = 1; k < n; k++)
+    for (j = 1; j < n; j++)
     {
-        y = a[k];
-        for (i = k - 1; i >= 0 && y < a[i]; i--)
+        y = a[j];
+        for (i = j - 1; i >= 0 && y < a[i]; i--)
+        {
             a[i + 1] = a[i];
-        
+            for (int k = 0; k < n; k++)
+            {
+                printf("%d ", a[k]);
+            }
+            printf("\n");
+        }
+
         a[i + 1] = y;
+
+        for (int k = 0; k < n; k++)
+        {
+            printf("%d ", a[k]);
+        }
+        printf("\n");
     }
 }
