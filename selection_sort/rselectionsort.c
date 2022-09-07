@@ -28,11 +28,20 @@ void rselectionsort(int *a, size_t n, size_t initial_index)
  
     // calling minimum index function for minimum index
     int k = min_index(a, initial_index, n-1);
+    printf("k = %d\n", k);
+    for(int l=0; l<n; l++) {
+        printf("%d ", a[l]);
+    }
+    printf("\n");
  
     // Swapping when index and minimum index are not same
     if (k != initial_index)
        swap(&a[k], &a[initial_index]);
  
+    for(int l=0; l<n; l++) {
+        printf("%d ", a[l]);
+    }
+    printf("\n");
     // Recursively calling selection sort function
     rselectionsort(a, n, initial_index + 1);
 }
