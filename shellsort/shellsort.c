@@ -6,6 +6,7 @@ void shellsort(int *a, size_t n)
 {
     int gaps[8] = {701, 301, 132, 57, 23, 10, 4, 1};
     for (int g = 0; g < 8; g++)
+    // for (int gap = n/2; gap > 0; gap /= 2)
     {
         int gap = gaps[g];
         // Do a gapped insertion sort for every elements in gaps
