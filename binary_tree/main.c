@@ -11,7 +11,7 @@ int main()
     while (option != 0)
     {
         printf(
-            "\n\n[1] Insert Node\n[2] Delete Node\n[3] Find a Node\n[0] Quit\n");
+            "\n\n1. Insert a Node\n2. Delete a Node\n3. Find a Node\n0. Quit\n");
         scanf("%d", &option);
 
         switch (option)
