@@ -1,0 +1,81 @@
+\documentclass[aspectratio=169,8pt]{beamer}
+
+% Standard packages
+
+\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[]{unicode-math}
+\setsansfont{Roboto}
+
+% Setup asymptote
+\usepackage[inline]{asymptote}
+
+\newcounter{counter}
+% Author, Title, etc.
+
+\title{Binary Trees}
+
+\author[Shiv Shankar Dayal]{Shiv Shankar Dayal}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}[fragile]{Binary Tree}
+  \begin{center}
+    \begin{asy}
+      import fontsize;
+      unitsize(1cm);
+      defaultpen(fontsize(9pt));
+      import binarytree;
+
+      picture pic;
+
+      binarytree st=searchtree(10,5,2,1,3,4,7,6,8,9,15,13,12,11,14,17,16,18,19);
+      draw(pic, st, blue, condensed=true);
+      add(pic.fit(),(0,0),10S);
+    \end{asy}
+  \end{center}
+\end{frame}
+\begin{frame}{Definitions}
+  A \textit{binary tree} is a finite set of elements that is either empty or partitioned into three disjoint subset. The first
+  subset contains a single element called the \textit{root} of the tree. Two other subsets themselves are binary trees, called the
+  \textit{left} or \textit{right} subtrees of the original tree. Either or both of the subtrees can be empty. Each element of a
+  binary tree is called a \textit{node} of the binary tree.\\
+  \vspace*{0.2cm}
+  If A is the root of a binary tree and B is the root of its left or right suhtree, then A is said to be the \textit{father} of B
+  and B is said to be the left or right \textit{son} of A. A node that has no sons is called a \textit{leaf} node.\\
+  \vspace*{0.2cm}
+  A node A is an \textit{ancestor} of some node B(this is \textit{descendant} of ancestor node) if A is either the father of B or
+  the father of some ancestor of B. Two nodes are \textit{brothers} if they are left and right sons of the same father.\\
+  \vspace*{0.2cm}
+  If every nonleaf node in a binary tree has nonempty left and right subtrees, the tree is called a \textit{strictly binary
+    tree}. A strictly binary tree with n leaves always contains $2n - 1$ nodes.\\
+  \vspace*{0.2cm}
+  The root of the tree has level 0, and the level of any other node in the tree
+  is one more than the level of its father. The \textit{depth} of a binary tree
+  is the maximum level of any leaf in the tree. This is equal to the lenght of
+  the longest path from the root to any leaf.\\
+\end{frame}
+\begin{frame}{Contd...}
+  A \textit{complete binary tree} of depth $d$ is the strictly binary trree all
+  of whose leaves are ay level $d$.\\
+  \vspace*{0.2cm}
+  A complete binary tree contains $1$ node at level $0, 2$ at level $1, 4$ at
+  level $2$ and so on. On $d$th level it will contain $2^d$ leaves. Thus, total
+  no. of nodes $= 2^0 + 2^1 + 2^2 + \ldots + 2^d = 2^{d + 1} - 1.$ Since all
+  the leaves at at level $d$ total no. of leaves $2^d$ and total no. of nonleaf
+  nodes is $2^{d} - 1$.\\
+  \vspace*{0.2cm}
+  A binary tree of depth $d$ is an allmost complete binary tree if:
+  \begin{enumerate}
+  \item Any node at level less than $d - 1$ has two sons.
+  \item For any node in the tree with a right descendant at level $d$m it must
+    have a left son and every left desendant of it is either a leaf at level
+    $d$ or has two sons.
+  \end{enumerate}
+\end{frame}
+\end{document}
