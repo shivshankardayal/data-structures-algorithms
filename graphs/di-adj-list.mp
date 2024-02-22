@@ -1,0 +1,60 @@
+input boxes;
+
+beginfig(1)
+  prologues:= 3;
+  boxit.a(btex $0$ etex); boxit.b(btex $1$ etex); boxit.c(btex $2$ etex); boxit.d(btex $3$ etex); boxit.e(btex $4$ etex);
+  b.c = a.c + (0, -0.5cm);
+  c.c = b.c + (0, -0.5cm);
+  d.c = c.c + (0, -0.5cm);
+  e.c = d.c + (0, -0.5cm);
+  drawboxed(a);
+  drawboxed(b);
+  drawboxed(c);
+  drawboxed(d);
+  drawboxed(e);
+  boxit.ac(btex $2$ etex); boxit.ad(btex $3$ etex);
+  ac.c = a.c + (1cm, 0);
+  ad.c = ac.c + (1cm, 0);
+  pair anull;
+  anull = ad.c + (1cm, 0);
+  drawboxed(ac);
+  drawboxed(ad);
+  drawarrow a.e -- ac.w;
+  drawarrow ac.e -- ad.w;
+  drawarrow ad.e -- anull;
+  label.rt(btex $NULL$ etex, anull);
+  boxit bc(btex $2$ etex);
+  bc.c = b.c + (1cm, 0);
+  pair bnull;
+  bnull = bc.c + (1cm, 0);
+  drawboxed(bc);
+  drawarrow b.e -- bc.w;
+  drawarrow bc.e -- bnull;
+  label.rt(btex $NULL$ etex, bnull);
+  boxit.cd(btex $3$ etex); boxit.ce(btex $4$ etex);
+  cd.c = c.c + (1cm, 0);
+  ce.c = cd.c + (1cm, 0);
+  pair cnull;
+  cnull = ce.c + (1cm, 0);
+  drawboxed(cd);
+  drawboxed(ce);
+  drawarrow c.e -- cd.w;
+  drawarrow cd.e -- ce.w;
+  drawarrow ce.e -- cnull;
+  label.rt(btex $NULL$ etex, cnull);
+  boxit.de(btex $4$ etex);
+  de.c = d.c + (1cm, 0);
+  pair dnull;
+  dnull = de.c + (1cm, 0);
+  drawboxed(de);
+  drawarrow d.e -- de.w;
+  drawarrow de.e -- dnull;
+  label.rt(btex $NULL$ etex, dnull);
+  pair enull;
+  enull = e.c + (1cm, 0);
+  drawarrow e.e -- enull;
+  label.rt(btex $NULL$ etex, enull);
+
+\endfig;
+
+\bye
