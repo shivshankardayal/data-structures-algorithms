@@ -1,53 +1,5 @@
-#include <limits.h>  /// for INT_MIN
-#include <stdio.h>   /// for IO operations
-#include <stdlib.h>  /// for dynamic memory allocation
+#include "max_heap.h"
 
-typedef struct max_heap
-{
-	int *p;
-	int size;
-	int count;
-} Heap;
-
-Heap *create_heap(Heap *heap);
-void down_heapify(Heap *heap, int index);
-void up_heapify(Heap *heap, int index);
-void push(Heap *heap, int x);
-void pop(Heap *heap);
-int top(Heap *heap);
-int empty(Heap *heap);
-int size(Heap *heap);
-
-int main()
-{
-	Heap *head = NULL;
-	head = create_heap(head);
-	push(head, 10);
-	printf("Pushing element : 10\n");
-	push(head, 3);
-	printf("Pushing element : 3\n");
-	push(head, 2);
-	printf("Pushing element : 2\n");
-	push(head, 8);
-	printf("Pushing element : 8\n");
-	printf("Top element = %d \n", top(head));
-	push(head, 1);
-	printf("Pushing element : 1\n");
-	push(head, 7);
-	printf("Pushing element : 7\n");
-	push(head, 18);
-	printf("Pushing element : 18\n");
-	push(head, 13);
-	printf("Pushing element : 13\n");
-	printf("Top element = %d \n", top(head));
-	pop(head);
-	printf("Popping an element.\n");
-	printf("Top element = %d \n", top(head));
-	pop(head);
-	printf("Popping an element.\n");
-	printf("Top element = %d \n", top(head));
-	return 0;
-}
 Heap *create_heap(Heap *heap)
 {
 	heap = (Heap *)malloc(sizeof(Heap));
@@ -57,7 +9,7 @@ Heap *create_heap(Heap *heap)
 	return heap;
 }
 
-void down_heapify(Heap *heap, int index)
+void heap_down(Heap *heap, int index)
 {
 	if (index >= heap->count)
 		return;
@@ -81,16 +33,17 @@ void down_heapify(Heap *heap, int index)
 	{
 		*((heap->p) + left) = *((heap->p) + index);
 		*((heap->p) + index) = maximum;
-		down_heapify(heap, left);
+		heap_down(heap, left);
 	}
 	if (rightflag)
 	{
 		*((heap->p) + right) = *((heap->p) + index);
 		*((heap->p) + index) = maximum;
-		down_heapify(heap, right);
+		heap_down(heap, right);
 	}
 }
-void up_heapify(Heap *heap, int index)
+
+void heap_up(Heap *heap, int index)
 {
 	int parent = (index - 1) / 2;
 	if (parent < 0)
@@ -100,7 +53,7 @@ void up_heapify(Heap *heap, int index)
 		int temp = *((heap->p) + index);
 		*((heap->p) + index) = *((heap->p) + parent);
 		*((heap->p) + parent) = temp;
-		up_heapify(heap, parent);
+		heap_up(heap, parent);
 	}
 }
 
@@ -108,15 +61,16 @@ void push(Heap *heap, int x)
 {
 	if (heap->count >= heap->size)
 		return;
-	*((heap->p) + heap->count) = x;
+	*((heap->p) + heap->count) = x; // count = 2  size = 4  10      |10|12|||
 	heap->count++;
 	if (4 * heap->count >= 3 * heap->size)
 	{
 		heap->size *= 2;
 		(heap->p) = (int *)realloc((heap->p), (heap->size) * sizeof(int));
 	}
-	up_heapify(heap, heap->count - 1);
+	heap_up(heap, heap->count - 1);
 }
+
 void pop(Heap *heap)
 {
 	if (heap->count == 0)
@@ -125,13 +79,14 @@ void pop(Heap *heap)
 	int temp = *((heap->p) + heap->count);
 	*((heap->p) + heap->count) = *(heap->p);
 	*(heap->p) = temp;
-	down_heapify(heap, 0);
+	heap_down(heap, 0);
 	if (4 * heap->count <= heap->size)
 	{
 		heap->size /= 2;
 		(heap->p) = (int *)realloc((heap->p), (heap->size) * sizeof(int));
 	}
 }
+
 int top(Heap *heap)
 {
 	if (heap->count != 0)
@@ -139,6 +94,7 @@ int top(Heap *heap)
 	else
 		return INT_MIN;
 }
+
 int empty(Heap *heap)
 {
 	if (heap->count != 0)
@@ -146,4 +102,5 @@ int empty(Heap *heap)
 	else
 		return 1;
 }
+
 int size(Heap *heap) { return heap->count; }
