@@ -10,3 +10,4 @@ a.out
 *.toc
 *.pre
 *.mpx
+.vscode

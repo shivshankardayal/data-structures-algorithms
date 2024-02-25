@@ -11,11 +11,11 @@ Heap *create_heap(Heap *heap)
 
 void heap_down(Heap *heap, int index)
 {
-	if (index >= heap->count)
-		return;
-	int left = index * 2 + 1;
-	int right = index * 2 + 2;
-	int leftflag = 0, rightflag = 0;
+	if (index >= heap->count)                          //         15 
+		return;                                        //        /  \   count = 3 maximum = 18 left flag 1
+	int left = index * 2 + 1;                          //       10   12
+	int right = index * 2 + 2;                         //       /
+	int leftflag = 0, rightflag = 0;                   //      18
 
 	int maximum = *((heap->p) + index);
 	if (left < heap->count && maximum < *((heap->p) + left))
@@ -61,10 +61,10 @@ void push(Heap *heap, int x)
 {
 	if (heap->count >= heap->size)
 		return;
-	*((heap->p) + heap->count) = x; // count = 2  size = 4  10      |10|12|||
-	heap->count++;
+	*((heap->p) + heap->count) = x; // count = 3  size = 8    18    |10|15|12|18|||||
+	heap->count++;					// 18
 	if (4 * heap->count >= 3 * heap->size)
-	{
+	{ // 15 12
 		heap->size *= 2;
 		(heap->p) = (int *)realloc((heap->p), (heap->size) * sizeof(int));
 	}
@@ -75,7 +75,7 @@ void pop(Heap *heap)
 {
 	if (heap->count == 0)
 		return;
-	heap->count--;
+	heap->count--; 
 	int temp = *((heap->p) + heap->count);
 	*((heap->p) + heap->count) = *(heap->p);
 	*(heap->p) = temp;
@@ -102,5 +102,3 @@ int empty(Heap *heap)
 	else
 		return 1;
 }
-
-int size(Heap *heap) { return heap->count; }
