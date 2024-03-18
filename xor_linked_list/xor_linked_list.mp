@@ -1,0 +1,44 @@
+input boxes;
+
+beginfig(1)
+	prologues:=3;
+	draw (0, 0) -- (0, 0.5cm) -- (1cm, 0.5cm) -- (1cm, 0cm) -- cycle;
+	label("null", (0.5cm, 0.25cm));
+	draw (1cm, 0) -- (1cm, 0.5cm) -- (2cm, 0.5cm) -- (2cm, 0cm) -- cycle;
+	label("data", (1.5cm, 0.25cm));
+	draw (2cm, 0) -- (2cm, 0.5cm) -- (3cm, 0.5cm) -- (3cm, 0cm) -- cycle;
+	label("next", (2.5cm, 0.25cm));
+	drawarrow (3cm, 0.1cm) -- (3.5cm, 0.1cm);
+	drawarrow (3.5cm, 0.4cm) -- (3cm, 0.4cm);
+	draw (3.5cm, 0) -- (3.5cm, 0.5cm) -- (4.5cm, 0.5cm) -- (4.5cm, 0cm) -- cycle;
+	label("prev", (4cm, 0.25cm));
+	draw (4.5cm, 0) -- (4.5cm, 0.5cm) -- (5.5cm, 0.5cm) -- (5.5cm, 0cm) -- cycle;
+	label("data", (5cm, 0.25cm));
+	draw (5.5cm, 0) -- (5.5cm, 0.5cm) -- (6.5cm, 0.5cm) -- (6.5cm, 0cm) -- cycle;
+	label("next", (6cm, 0.25cm));
+	drawarrow (6.5cm, 0.1cm) -- (7cm, 0.1cm);
+	drawarrow (7cm, 0.4cm) -- (6.5cm, 0.4cm);
+	draw (7cm, 0) -- (7cm, 0.5cm) -- (8cm, 0.5cm) -- (8cm, 0cm) -- cycle;
+	label("prev", (7.5cm, 0.25cm));
+	draw (8cm, 0) -- (8cm, 0.5cm) -- (9cm, 0.5cm) -- (9cm, 0cm) -- cycle;
+	label("data", (8.5cm, 0.25cm));
+	draw (9cm, 0) -- (9cm, 0.5cm) -- (10cm, 0.5cm) -- (10cm, 0cm) -- cycle;
+	label("null", (9.5cm, 0.25cm));
+	draw (0, -1cm) -- (0, -0.5cm) -- (1cm, -0.5cm) -- (1cm, -1cm) -- cycle;
+	label("data", (0.5cm, -.75cm));
+	draw (1cm, -1cm) -- (1cm, -0.5cm) -- (3cm, -0.5cm) -- (3cm, -1cm) -- cycle;
+	label("null^next", (2cm, -0.75cm));
+	drawarrow (3cm, -0.6cm) -- (3.5cm, -0.6cm);
+	drawarrow (3.5cm, -0.9cm) -- (3cm, -0.9cm);
+	draw (3.5cm, -1cm) -- (3.5cm, -0.5cm) -- (4.5cm, -0.5cm) -- (4.5cm, -1cm) -- cycle;
+	label("data", (4cm, -0.75cm));
+	draw (4.5cm, -1cm) -- (4.5cm, -0.5cm) -- (6.5cm, -0.5cm) -- (6.5cm, -1cm) -- cycle;
+	label("prev^next", (5.5cm, -0.75cm));
+	drawarrow (6.5cm, -0.6cm) -- (7cm, -0.6cm);
+	drawarrow (7cm, -0.9cm) -- (6.5cm, -0.9cm);
+	draw (7cm, -1cm) -- (7cm, -0.5cm) -- (8cm, -0.5cm) -- (8cm, -1cm) -- cycle;
+	label("data", (7.5cm, -0.75cm));
+	draw (8cm, -1cm) -- (8cm, -0.5cm) -- (10cm, -0.5cm) -- (10cm, -1cm) -- cycle;
+	label("prev^null", (9cm, -0.75cm));
+\endfig;
+\bye

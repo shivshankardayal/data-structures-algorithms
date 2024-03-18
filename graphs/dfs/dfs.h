@@ -22,6 +22,5 @@ typedef struct graph
 Graph *create_graph(int);
 void join(Graph *, int, int);
 void print(Graph *);
-void dfs(Graph *, int);
 
 #endif
