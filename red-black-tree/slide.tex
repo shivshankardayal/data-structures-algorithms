@@ -1,0 +1,91 @@
+% -*- mode: plain-tex; -*-
+\input ../preamble
+
+\begingroup
+  \nopagenumbers
+  \topglue 0pt plus 1fill
+  \titlefont{\noindent\color{mycolor}Red-Black Tree}
+  \vskip 5mm
+  \hrule
+  \vskip 5mm
+  \noindent\authorfont Shiv Shankar Dayal
+  ~~~~
+  \vfill
+  \break
+\endgroup
+~~~
+\headline=\header
+{\topicfont{\color{white}Red-Black Trees}}
+\vskip 1cm
+\textfont\baselineskip16pt Red-Black tree(RBT) is of one of the most important data structures. It is a
+self-balancing binary tree. The most attractive part of RBT is its performance. Because it is self-balanced
+the tree does not skew in case of poor order of elements during insertion. An example RBT is given below:
+\vskip 5mm
+\cfig{rbt}{rbt.pdf}{Red-Black Tree}{12cm}
+\eject
+\headline=\header
+{\topicfont{\color{white}Properties of Red-Black Trees}}
+\vskip 1cm
+\textfont\baselineskip16pt
+Red-Black Trees have following properties
+\numberedlist
+\li Every node is either red or black.
+\li The root node is always black.
+\li The red nodes cannot have red children.
+\li All leaves are black nodes.
+\li Every path from a node to its descendant null nodes have the equal no.\ of black nodes.
+\li Insert, search and delete all have time complexity of $O(\log n)$ for RBT.
+\li The black height of an RBT is the number of black nodes on a path from the root to a leaf. Leaves are
+    counted as black. So, an RBT of height $h$ has black height $>= h/2$.
+\li Height of an RBT with $n$ nodes is $h\leq 2 \log_2(n + 1)$.
+\li The black depth of a node is defined as the number of black nodes from the root to that node
+\endnumberedlist
+
+Following these rules we can say that a chain of three nodes is not possible as that will violate one of
+the properties mentioned above.
+\vfill
+\eject
+\headline=\header
+{\topicfont{\color{white}Insertions in Red-Black Trees}}
+\vskip 1cm
+\textfont\baselineskip16pt
+Insertions might cause unbalance/inconsistency in an RBT. To insert a new element we insert as if it is a
+BST. After the insertion we check for violations of rules of RBT, and correct the errors if any.
+
+There are two possible cases:
+
+\numberedlist
+\li Uncle is red. Recolor the parent and uncle to black, and the grandparent to red. Then move up
+    the tree to correct violations.
+
+\li Uncle is black. Two cases arise:
+    \numberedlist
+        \li Node is a right child. Perform a left rotation on the parent.
+        \li Node is a left child. Perform a right rotaion on the grandparent and recolor.
+    \endnumberedlist
+\endnumberedlist
+\vfill
+\eject
+
+\headline=\header
+{\topicfont{\color{white}Deletions in Red-Black Trees}}
+\vskip 1cm
+\textfont\baselineskip16pt
+Like insertions, deletions can also cause inconsistencies in an RBT. To delete a node, we perform a deletion
+as if it is a BST, and then fix the inconsistencies. If a black node is deleted, a ``double black''
+condition might arise, which requires fix. To fix this we need to check color of sibling node.
+
+\numberedlist
+\li Sibling is red. Rotate the parent and recolor the sibling and parent.
+\li Sibling is black. Two cases arise:
+    \numberedlist
+    \li Sibling's children are black. Recolor the sibling and propagate the double black upwards.
+    \li At least one of shibling's children is black.
+        \numberedlist
+        \li If the sibling's far child is red, then we perform a rotation on parent and sibling. Also
+        recolor them properly.
+        \li If sibling's near child is black, then we rotate the sibling and its child and proceed as above.
+        \endnumberedlist
+    \endnumberedlist
+\endnumberedlist
+\bye

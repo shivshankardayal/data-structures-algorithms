@@ -1,0 +1,63 @@
+\input eplain
+\beginpackages
+  % |url.sty| provides the |\url| command which we will use to typeset
+  % a URL.  We request that |url.sty| be the version from June~27,
+  % 2005, or later, because earlier versions had problems interacting
+  % with plain \TeX.
+  \usepackage{url}[2015/06/27]
+  % |color.sty| provides support for colored text; all hyperlinks are
+  % automatically colored by Eplain when this package is loaded.  We give
+  % the |dvipsnames| option because we want to use named colors from the
+  % |dvips| graphics driver.
+  \usepackage[dvipsnames]{color}
+  % Finally, we load |graphicx.sty|, for the macros |\includegraphics|
+  % and |\rotatebox|.
+  \usepackage{graphicx}
+\endpackages
+\enablehyperlinks
+\hlopts{bwidth=0}
+% \hlopts[url]{colormodel=named,color=Black}
+\paperwidth = 281mm
+\paperheight = 158mm
+\pdfpagewidth = 281mm
+\pdfpageheight = 158truemm
+\topmargin = 5mm
+\bottommargin = 5mm
+\leftmargin = 5mm
+\rightmargin = 5mm
+\definecolor{mycolor}{rgb}{0, 0.5, 0.7}
+\definecolor{black}{rgb}{0, 0, 0}
+\definecolor{white}{rgb}{1, 1, 1}
+\font\titlefont  = cmss10 at 27pt
+\font\authorfont = cmss10 at 16pt
+\font\topicfont  = cmr10 at 18pt
+\font\textfont   = cmr10 at 12pt
+
+\def\header{%
+    {\kern-2in{\color{mycolor}\vrule width 100cm height 1.8cm}}
+}
+
+\newcount\fignumber
+\newbox\imgbox
+
+\def\cfig#1#2#3#4{%
+\global\advance\fignumber by 1
+\pdfximage width #4{#2}
+\centerline{\pdfrefximage\pdflastximage}
+\hldesttype[definexref]{fitr}%
+\hldestopts[definexref]{width=\wd\imgbox,height=0pt,depth=\ht\imgbox}%
+\definexref{#1}{Fig. \the\fignumber}{figure}%
+\centerline{\color{mycolor}\noindent Fig.~\the\fignumber.\ #3\color{black}}%
+}
+
+\def\lfig#1#2#3#4{%
+\global\advance\fignumber by 1
+\pdfximage width #4{#2}
+\pdfrefximage\pdflastximage
+\hldesttype[definexref]{fitr}%
+\hldestopts[definexref]{width=\wd\imgbox,height=0pt,depth=\ht\imgbox}%
+\definexref{#1}{Fig. \the\fignumber}{figure}%
+\color{mycolor}\noindent Fig.~\the\fignumber.\ #3\color{black}%
+}
+
+\def\numberedprintmarker#1{\llap{#1. \listmarkerspace}}%
