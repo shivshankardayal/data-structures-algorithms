@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+enum{BLACK, RED};
+
 typedef struct node
 {
     int val;
@@ -18,7 +20,7 @@ Node *newNode(int val, Node *par)
     create->par = par;
     create->left = NULL;
     create->right = NULL;
-    create->color = 1;
+    create->color = RED;
 
     return create;
 }
@@ -119,8 +121,8 @@ void checkNode(Node *node)
     }
 
     // If both the children of the grandParent are red
-    if (grandParent->right != NULL && (grandParent->right)->color == 1 &&
-        grandParent->left != NULL && (grandParent->left)->color == 1)
+    if (grandParent->right != NULL && (grandParent->right)->color == RED &&
+        grandParent->left != NULL && (grandParent->left)->color == RED)
     {
         // Make the grandParent red and both of its children black
         (grandParent->right)->color = 0;
@@ -761,7 +763,7 @@ int main()
             if (root == NULL)
             {
                 root = newNode(scanValue, NULL);
-                root->color = 0;
+                root->color = BLACK;
             }
             else
             {
