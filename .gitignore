@@ -11,3 +11,5 @@ a.out
 *.pre
 *.mpx
 .vscode
+*.vimout
+*.tuc

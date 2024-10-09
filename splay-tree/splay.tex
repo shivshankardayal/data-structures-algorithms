@@ -1,0 +1,220 @@
+\environment ../../slide/slides
+
+% To enable the use of sample images in ConTeXt distrubtion
+\setupexternalfigures[location={local,global,default}]
+
+\starttext
+
+\setvariables
+    [metadata]
+    [
+      title={Splay Tree},
+      author={Shiv Shankar Dayal},
+      date={},
+      location={},
+    ]
+
+\startslide[title={Insertion}]
+\startplacefigure[location={right, none}]
+  \startMPcode
+    draw fullcircle scaled .6cm withcolor white;
+    draw fullcircle scaled .6cm shifted (-10cm, -1cm);
+    label("$4$", (-10cm, -1cm));
+    label("t", (-10cm, 0cm));
+    drawarrow (-10cm, -0.2cm) -- (-10cm, -.7cm);
+    label("node", (-9cm, 0cm));
+    drawarrow (-9cm, -0.2cm) -- (-10cm, -.7cm);
+    label("left", (-11cm, 0cm));
+    drawarrow (-11cm, -0.2cm) -- (-10cm, -.7cm);
+    label("right", (-8cm, 0cm));
+    drawarrow (-8cm, -0.2cm) -- (-10cm, -.7cm);
+    label("old_root", (-12cm, 0cm));
+    drawarrow (-12cm, -0.2cm) -- (-10cm, -.7cm);
+    draw fullcircle scaled .6cm shifted (-10cm, -3cm);
+    label("$2$", (-10cm, -3cm));
+    label("t", (-10cm, -2cm));
+    drawarrow (-10cm, -2.2cm) -- (-10cm, -2.7cm);
+    draw fullcircle scaled .6cm shifted (-8cm, -4cm);
+    label("$4$", (-8cm, -4cm));
+    path p; path q;
+    p := (-10cm, -3cm) -- (-8cm, -4cm);
+    pair a;
+    a := point 0.3cm on p;
+    q := (-8cm, -4cm) -- (-10cm, -3cm);
+    pair b;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    label("r", (-10cm, -5cm));
+    draw fullcircle scaled .6cm shifted (-9cm, -6cm);
+    label("$2$", (-9cm, -6cm));
+    draw fullcircle scaled .6cm shifted (-8cm, -7cm);
+    label("$4$", (-8cm, -7cm));
+    drawarrow (-10cm, -5.2cm) -- (-9.22cm, -5.78cm);
+    p := (-9cm, -6cm) -- (-8cm, -7cm);
+    pair a;
+    a := point 0.3cm on p;
+    q := (-8cm, -7cm) -- (-9cm, -6cm);
+    pair b;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    label("l", (-9cm, -5cm));
+    drawarrow (-9cm, -5.2cm) -- (-9cm, -5.7cm);
+    draw fullcircle scaled .6cm shifted (-10cm, -8cm);
+    draw fullcircle scaled .6cm shifted (-9cm, -9cm);
+    draw fullcircle scaled .6cm shifted (-10cm, -10cm);
+    label("$3$", (-10cm, -8cm));
+    label("$4$", (-9cm, -9cm));
+    label("$2$", (-10cm, -10cm));
+    p := (-10cm, -8cm) -- (-9cm, -9cm);
+    pair a;
+    a := point 0.3cm on p;
+    q := (-9cm, -9cm) -- (-10cm, -8cm);
+    pair b;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    p := (-10cm, -10cm) -- (-9cm, -9cm);
+    pair a;
+    a := point 0.3cm on p;
+    q := (-9cm, -9cm) -- (-10cm, -10cm);
+    pair b;
+    b := point 0.3cm on q;
+    drawarrow b -- a;
+  \stopMPcode
+\stopplacefigure
+\startC
+splay(tree, data);
+old_root = tree->root;
+
+// Compare the current root with data:
+if (old_root != NULL) {
+  comp = (tree->comp)(data, old_root->data);
+}
+
+// If data is in the tree: overwrite it!
+if (comp == 0) {
+  old_data = tree->root->data;
+  tree->root->data = data;
+  return old_data;
+}
+
+// Otherwise insert a new node as a root and link the previous root to it:
+tree->root = (sp_node *)malloc(sizeof(sp_node));
+if (tree->root == NULL) {
+  fprintf(stderr, "ERROR: Unable to allocate sp_node\n");
+  tree->root = old_root;
+} else {
+  tree->root->data = data;
+  if (comp > 0) {
+	tree->root->left = old_root;
+	tree->root->right = old_root->right;
+	old_root->right = NULL;
+  } else {
+	tree->root->right = old_root;
+	tree->root->left = old_root->left;
+	old_root->left = NULL;
+  }
+}
+\stopC
+\stopslide
+
+\startslide[title={Splay}]
+
+\startplacefigure[location={right, none}]
+  \startMPcode
+    draw fullcircle scaled .6cm;
+    draw fullcircle scaled .6cm shifted(-2cm, -1cm);
+    draw fullcircle scaled .6cm shifted(2cm, -1cm);
+    draw fullcircle scaled .6cm shifted(-3cm, -2cm);
+    draw fullcircle scaled .6cm shifted(-1cm, -2cm);
+    draw fullcircle scaled .6cm shifted(3cm, -2cm);
+    draw fullcircle scaled .6cm shifted(1cm, -2cm);
+    path p; path q;
+    p := origin -- (-2cm, -1cm);
+    pair a;
+    a := point 0.3cm on p;
+    q := (-2cm, -1cm) -- origin;
+    pair b;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    p := origin .. (2cm, -1cm);
+    q := (2cm, -1cm) .. origin;
+    a := point 0.3cm on p;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    p := (-2cm, -1cm) .. (-3cm, -2cm);
+    q := (-3cm, -2cm) .. (-2cm, -1cm);
+    a := point 0.3cm on p;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    p := (-2cm, -1cm) .. (-1cm, -2cm);
+    q := (-1cm, -2cm) .. (-2cm, -1cm);
+    a := point 0.3cm on p;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    p := (2cm, -1cm) .. (1cm, -2cm);
+    q := (1cm, -2cm) .. (2cm, -1cm);
+    a := point 0.3cm on p;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+    p := (2cm, -1cm) .. (3cm, -2cm);
+    q := (3cm, -2cm) .. (2cm, -1cm);
+    a := point 0.3cm on p;
+    b := point 0.3cm on q;
+    drawarrow a -- b;
+  \stopMPcode
+\stopplacefigure
+
+\startC
+if (node->left == NULL) {
+    break;
+}
+
+// Rotate right if needed:
+if ((tree->comp)(data, node->left->data) < 0) {
+    temp = node->left;
+	node->left = temp->right;
+	temp->right = node;
+	node = temp;
+	if (node->left == NULL) {
+	    break;
+	}
+}
+
+// Link right:
+right->left = node;
+right = node;
+node = node->left;
+\stopC
+\stopslide
+
+\startslide[title={Splay Contd.}]
+\startC
+if (node->right == NULL) {
+  break;
+}
+
+// Rotate left if needed:
+if ((tree->comp)(data, node->right->data) > 0) {
+  temp = node->right;
+  node->right = temp->left;
+  temp->left = node;
+  node = temp;
+  if (node->right == NULL) {
+	break;
+  }
+}
+
+// Link left:
+left->right = node;
+left = node;
+node = node->right;
+//------
+// Assemble:
+left->right = node->left;
+right->left = node->right;
+node->left = root.right;
+node->right = root.left;
+tree->root = node;\stopC
+\stopslide
+
+\stoptext
