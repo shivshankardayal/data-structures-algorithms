@@ -1,0 +1,187 @@
+\environment ../../slide/slides
+
+% To enable the use of sample images in ConTeXt distrubtion
+\setupexternalfigures[location={local,global,default}]
+
+\starttext
+
+\setvariables
+    [metadata]
+    [
+      title={General Trees},
+      author={Shiv Shankar Dayal},
+      date={},
+      location={},
+    ]
+
+\startslide[title={Theory}]
+  A {\it tree} is finite nonempty set of elements in which on element is called the {\it root} and the
+  remaining elements are partitioned into $m > 0$ disjoint subsets, each of which is itself a tree. Each
+  element in a tree is called a {\it node} of a tree. Each node may be the root of a tree with zero of more
+  subtrees. A node with no subtrees is a {\it leaf}. We use the terms {\it father, son, brother, ancestor,
+    descendant, level} and {\it depth} in the same sense as binary trees. {\bf Degree} of a node in a
+  tree is the no.\ of its sons. An {\bf ordered tree} is defined as a tree in which the subtrees of each
+  node form an ordered set. The first son of a node in an ordered tree is often called the {\bf oldest}
+  son of that node, and the last son is called the {\bf youngest}. A {\bf forest} is an ordered set of
+  ordered trees.
+
+  Every binary tree except for the empty binary tree is indeed a tree. However, not every tree is binary. A
+  tree node may have more than two sons, whereas a binary tree node may not. Even a tree whose nodes have at
+  most two sons is not necessarily a binary tree. This is because an only son in a general tree is not
+  designated as being a \quotation{leaf} or a \quotation{right} son, whereas in a binary tree, every son must
+  be either a left son or a right son.
+  \vskip 5mm
+  \startC
+    #define MAXS0NS 20
+
+    struct treenode {
+      int info;
+      struct treenode father;
+      struct treenode *sons[MXS0NS].
+    }
+\stopC
+
+\startC
+  // linking all nodes in a linked list
+  #define MAXNOOES 500
+
+  struct treenode {
+    int info;
+    int father;
+    int son; // points to oldest son
+    int next;
+  };
+
+  struct treenode node[MAXNODES];
+\stopC
+\stopslide
+
+\startslide[title={Theory contd.}]
+\startplacefigure[{location=right, none}]
+  \startMPcode
+    draw (-9cm, 0) -- (-9cm, 1.5cm) -- (-7cm, 1.5cm) -- (-7cm, 0) -- cycle;
+    draw (-9cm, 0.5cm) -- (-7cm, 0.5cm);
+    draw (-9cm, 1cm) -- (-7cm, 1cm);
+    label.lft("son", (-9cm, 0.25cm));
+    label.lft("info", (-9cm, 0.75cm));
+    label.lft("next", (-9cm, 1.25cm));
+    label("NULL", (-8cm, 1.25cm));
+    label("A", (-8cm, 0.75cm));
+    drawarrow (-8cm, 0.25cm) -- (-8cm, -0.5cm);
+    draw (-9cm, -2cm) -- (-9cm, -0.5cm) -- (-7cm, -0.5cm) -- (-7cm, -2cm) -- cycle;
+    draw (-9cm, -1.5cm) -- (-7cm, -1.5cm);
+    draw (-9cm, -1cm) -- (-7cm, -1cm);
+    drawarrow(-7.25cm, -.75cm) -- (-6.5cm, -.75cm);
+    label("B", (-8cm, -1.25cm));
+    drawarrow (-8cm, -1.75cm) -- (-8cm, -2.5cm);
+    draw (-6.5cm, -2cm) -- (-6.5cm, -0.5cm) -- (-4.5cm, -0.5cm) -- (-4.5cm, -2cm) -- cycle;
+    draw (-6.5cm, -1.5cm) -- (-4.5cm, -1.5cm);
+    draw (-6.5cm, -1cm) -- (-4.5cm, -1cm);
+    label("C", (-5.5cm, -1.25cm));
+    label("NULL", (-5.5cm, -1.75cm));
+    draw (-9cm, -4cm) -- (-9cm, -2.5cm) -- (-7cm, -2.5cm) -- (-7cm, -4cm) -- cycle;
+    draw (-9cm, -3.5cm) -- (-7cm, -3.5cm);
+    draw (-9cm, -3cm) -- (-7cm, -3cm);
+    label("E", (-8cm, -3.25cm));
+    label("NULL", (-8cm, -3.75cm));
+    draw(-4cm, -2cm) -- (-4cm, -0.5cm) -- (-2cm, -0.5cm) -- (-2cm, -2cm) -- cycle;
+    draw (-4cm, -1.5cm) -- (-2cm, -1.5cm);
+    draw (-4cm, -1cm) -- (-2cm, -1cm);
+    label("D", (-3cm, -1.25cm));
+    label("NULL", (-3cm, -.75cm));
+    drawarrow (-4.75cm, -.75cm) -- (-4cm, -.75cm);
+    draw (-6.5cm, -4cm) -- (-6.5cm, -2.5cm) -- (-4.5cm, -2.5cm) -- (-4.5cm, -4cm) -- cycle;
+    draw (-6.5cm, -3.5cm) -- (-4.5cm, -3.5cm);
+    draw (-6.5cm, -3cm) -- (-4.5cm, -3cm);
+    label("F", (-5.5cm, -3.25cm));
+    label("NULL", (-5.5cm, -3.75cm));
+    label("NULL", (-5.5cm, -2.75cm));
+    drawarrow (-7.25cm, -2.75cm) -- (-6.5cm, -2.75cm);
+    draw (-4cm, -4cm) -- (-4cm, -2.5cm) -- (-2cm, -2.5cm) -- (-2cm, -4cm) -- cycle;
+    draw (-4cm, -3.5cm) -- (-2cm, -3.5cm);
+    draw (-4cm, -3cm) -- (-2cm, -3cm);
+    label("G", (-3cm, -3.25cm));
+    label("NULL", (-3cm, -3.75cm));
+    label("NULL", (-3cm, -2.75cm));
+    drawarrow (-3cm, -1.75cm) -- (-3cm, -2.5cm);
+  \stopMPcode
+\stopplacefigure
+  \startC
+  struct treenode {
+    int info;
+    struct treenode *father.
+    struct treenode *son;
+    struct treenode *next.
+  };
+
+  typedef struct treenode *NODEPTR;
+\stopC
+
+Like binary trees if we traverse from root to sons then father field is not needed. Given below is the code
+for inorder traversal of such a tree.
+\vskip 5mm
+\startC
+  void inorder_trav(NODEPTR root) {
+    if(root != NULL) {
+      inorder_trav(root->son);
+      printf("%d\n", root->info);
+      inorder_trav(root->next);
+    }
+  }
+\stopC
+\vskip 5mm
+Similarly we can draw inspiration from BST traversal and implement preorder and postorder traversal for such
+trees.
+\stopslide
+\startslide[title={Constructing a Tree}]
+  We assume that father node is not needed.
+  \vskip 5mm
+  \startC
+  // p is a pointer to a node and list is a linear list of nodes linked through the next fields.
+  void set_sons(NODEPTR p, NODEPTR list) {
+    if(p == NULL) {
+      printf("Invalid ndoe\n");
+      exit(1);
+    }
+
+    if(p->son != NULL) {
+      printf("p must have a son.\n");
+      exit(2);
+    }
+
+    p->son = list;
+  }
+\stopC
+\stopslide
+\startslide[title={Constructing a Tree}]
+  Now we will add a son to a list as youngest son.
+  \vskip 5mm
+  \startC
+    void addson(NODEPTR p, int x) {
+      NODEPTR q;
+
+      if(p == NULL) {
+        printf("Invalid ndoe\n");
+        exit(1);
+      }
+
+      NODEPTR r = NULL;
+      q = p->son;
+
+      while(q != NULL) {
+        r = q;
+        q = q->next;
+      }
+
+      q = (void*)malloc(sizeof(NODEPTR));
+      q->info = x;
+      q->next = NULL
+
+      if(r == NULL)
+        p->son = q;
+      else
+        r->next = q;
+    }
+  \stopC
+\stopslide
+\stoptext
